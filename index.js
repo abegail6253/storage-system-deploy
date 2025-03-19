@@ -13,7 +13,7 @@ require('dotenv').config();
 
 // Initialize Express app
 const app = express();
-const port = 3001;
+const port = process.env.PORT || 3001;
 
 // Enable CORS for all routes
 app.use(cors({
@@ -35,6 +35,27 @@ const pool = mysql.createPool({
   user: 'root',
   password: 'Developer123!@#',  // Replace with your MySQL password
   database: 'dtr_db',  // Replace with your database name
+});
+
+// Test MySQL connection
+pool.getConnection((err, connection) => {
+  if (err) {
+    console.error('Error connecting to the database:', err);
+    return;
+  }
+  console.log('Connected to the MySQL database!');
+  connection.release();
+});
+
+// Storage system routes
+app.get('/storage', (req, res) => {
+  res.send('Welcome to the storage system!');
+});
+
+// You can add more storage-specific routes here
+app.post('/storage/upload', (req, res) => {
+  // Example route for file upload (you can implement file handling logic here)
+  res.send('File uploaded to storage system');
 });
 
 const promisePool = pool.promise();
