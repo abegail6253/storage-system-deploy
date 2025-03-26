@@ -33,7 +33,7 @@ app.use(express.json());
 const pool = mysql.createPool({
   host: 'localhost',
   user: 'root',
-  password: 'Developer123!@#',  // Replace with your MySQL password
+  password: 'developer',
   database: 'dtr_db',  // Replace with your database name
 });
 
